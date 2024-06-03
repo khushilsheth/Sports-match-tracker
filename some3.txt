@@ -1,3 +1,5 @@
+// attempt stage where i tried to get way too many detailes like the venue,date, overs and everything the score card is not showing details due to some error.
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

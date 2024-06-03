@@ -1,6 +1,6 @@
-Cricket Score tracker (sports match tracker):
-   dynamic website based on HTML, CSS & JavaScript.
-   Uses RapidAPI, crickbuzz-cricket.ndn
+#Cricket Score tracker (sports match tracker):
+   #dynamic website based on HTML, CSS & JavaScript.
+   #Uses RapidAPI, crickbuzz-cricket.ndn
       basic layout: {
         -> navigation bar with hover & transition effects,
         -> Match container which fetch matches  dynamically from  the api, also they are categorised accordingly. There are match cards in which has the match title, team names and score.

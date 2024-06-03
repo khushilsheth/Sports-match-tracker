@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Cricket Matches</title>
+    <link rel="stylesheet" href="style.css"/>
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <!-- Nav bar -->
+    <div class="navigation">
+        <div class="navigation_center">
+            <button class="navigation_buttons">Home</button>
+            <button class="navigation_buttons">Schedule</button>
+            <button class="navigation_buttons">Results</button>
+            <button class="navigation_buttons">News</button>
+        </div>
+        <div class="navigation_search">
+            <img src="searchphoto.png" alt="Search" class="navigation_searchbutton">
+        </div>
+        <div class="navigation_right">
+            <img src="logo.jpg" alt="nav_avatar" class="navigation_avatar">
+        </div>
+    </div>
+
+    <!-- Matches container -->
+    <div id="matchesContainer">
+       
+    </div>
+
+    <!-- Popup for detailed scorecard -->
+    <div id="scorecardModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="scorecard-header">
+                <div class="team-details">
+                    <h2 class="team-name" id="battingTeam"></h2>
+                    <ul class="team-score" id="battingScore"></ul>
+                </div>
+                <div class="match-details">
+                    <h2 class="match-status" id="matchStatus"></h2>
+                    <ul class="match-info" id="matchInfo"></ul>
+                </div>
+                <div class="team-details">
+                    <h2 class="team-name" id="bowlingTeam"></h2>
+                    <ul class="team-score" id="bowlingScore"></ul>
+                </div>
+            </div>
+            <div class="scorecard-body">
+                <div class="batting-details" id="battingDetails"></div>
+                <div class="bowling-details" id="bowlingDetails"></div>
+            </div>
+        </div>
+    </div>
+
+       
+    
+    
+</body>
+
+</html>

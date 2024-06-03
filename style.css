@@ -1,0 +1,231 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    padding-top: 80px;
+   
+}
+
+
+.navigation {
+    padding: 20px 50px;
+    position: fixed;
+    justify-content: space-between;
+    display: flex;
+    top: 0;
+    width: 100%;
+    align-items: center;
+    z-index: 1000;
+    background-color: #dce4eb;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navigation_center {
+    display: flex;
+    gap: 20px;
+}
+
+.navigation_buttons {
+    background-color: rgba(100, 142, 187, 0.222);
+    color: rgb(83, 25, 25);
+    border: none;
+    padding: 10px 30px;
+    box-shadow: 6px 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.4s, transform 0.3s;
+}
+
+.navigation_buttons:hover {
+    color: rgb(62, 131, 160);
+    transform: scale(1.06);
+}
+
+.navigation_search {
+    margin-right: -800px;
+}
+
+.navigation_searchbutton {
+    width: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.navigation_searchbutton:hover {
+    transform: scale(1.1);
+}
+
+.navigation_avatar {
+    width: 40px;
+    border-radius: 50%;
+}
+
+
+#matchesContainer {
+    background-color: rgb(172, 234, 234);
+    padding: 20px;
+}
+
+.match-type-container {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.match-type {
+    margin-bottom: 10px;
+}
+
+.match-type h2 {
+    margin-bottom: 10px;
+    color: #131313;
+}
+
+.match-cards-wrapper {
+    position: relative;
+    overflow: hidden;
+    padding: 0 40px;
+}
+
+.match-cards {
+    display: inline-flex;
+    transition: transform 0.3s ease;
+}
+
+.match-card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-right: 10px;
+    border-radius: 20px;
+    box-shadow: inset -11px 2px 37px rgb(0 0 0 / 18%);
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+    flex: 0 0 auto;
+}
+
+.match-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.match-card h3 {
+    margin: 0 0 5px 0;
+    color: #555;
+}
+
+.match-card p {
+    margin: 5px 0;
+    color: #777;
+}
+
+.scroll-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1;
+}
+
+.scroll-button.left {
+    left: 0;
+}
+
+.scroll-button.right {
+    right: 0;
+}
+
+/* Popup modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 10px;
+}
+
+.scorecard-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.team-details,
+.match-details {
+    flex: 1;
+}
+
+.team-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.team-score {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.match-status {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.scorecard-body {
+    display: flex;
+    justify-content: space-between;
+}
+
+.batting-details,
+.bowling-details {
+    flex: 1;
+}
+
+.batting-details h3,
+.bowling-details h3 {
+    margin-bottom: 10px;
+}
+
+.batting-details p,
+.bowling-details p {
+    margin: 5px 0;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

@@ -1,3 +1,5 @@
+// initial stage where the match card were being fetched and were able to see the match cards
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

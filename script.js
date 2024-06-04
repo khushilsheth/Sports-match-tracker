@@ -228,14 +228,24 @@ function displayScorecard(data, matchId, venueData) {
     modal.style.display = 'block';  // css display block so that this function will overlap and show its content over the background, also we can mondify on clicking
 }
 
-function closeModal() {
+function closeModal() {               //to close it with arrorw button this is the arrow function
     document.getElementById('scorecardModal').style.display = 'none';
 }
 
 // Close the modal when clicking anywhere outside of the modal
-window.onclick = function(event) {           //an event occurs which satisfies and close the modal
+
+// document.addEventListener('click', (event) => {             //an event occurs which satisfies and close the modal
+//   const modal = document.getElementById('scorecardModal');  
+//   if (event.target !== modal) {              // to determine weather clicked outside     
+//     // User clicked outside the modal
+//      modal.style.display = 'none';
+//   }
+// }); 
+
+//modified works.
+window.onclick = function(event) {         
     const modal = document.getElementById('scorecardModal');
-    if (event.target == modal) {
+    if (event.target == modal) {          
         modal.style.display = 'none';   
     }
 }

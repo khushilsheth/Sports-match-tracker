@@ -1,4 +1,4 @@
-const API_KEY = 'f8cefc0121msh830ddf765c49112p14571ajsnecaedd89619b';
+const API_KEY = "YOUR API_KEY";
 const API_HOST = 'cricbuzz-cricket.p.rapidapi.com';
 
 // async await  function to fetch the matches

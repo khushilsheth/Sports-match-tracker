@@ -1,9 +1,7 @@
-
-const API_KEY ='f8cefc0121msh830ddf765c49112p14571ajsnecaedd89619b';
+const API_KEY = 'f8cefc0121msh830ddf765c49112p14571ajsnecaedd89619b';
 const API_HOST = 'cricbuzz-cricket.p.rapidapi.com';
 
-
-
+// async await  function to fetch the matches
 async function fetchLiveMatches() {
     const url = 'https://cricbuzz-cricket.p.rapidapi.com/matches/v1/recent';
     const options = {
@@ -24,6 +22,7 @@ async function fetchLiveMatches() {
     }
 }
 
+// async await function to fetch the venue details
 async function fetchVenueDetails() {
     const url = 'https://cricbuzz-cricket.p.rapidapi.com/series/v1/3718/venues';
     const options = {
@@ -41,40 +40,45 @@ async function fetchVenueDetails() {
         return result.seriesVenue;
     } catch (error) {
         console.error(error);
-        return [];
+        return []; // extra checkpoint for any type errors
     }
 }
 
-let scheduleData = {}; 
+let scheduleData = {};
+
+//potential function which displays match card, cards are made and dsiplayed using DOM in this.
 function displayMatches(data) {
-    const matchesContainer = document.getElementById('matchesContainer');
-    matchesContainer.innerHTML = ''; // Clear previous matches
+    const matchesContainer = document.getElementById('matchesContainer');//main container which has all elements in it(whole page)
+    matchesContainer.innerHTML = ''; // Clear previous matches data 
 
-    data.typeMatches.forEach(matchType => {
-        const matchTypeContainer = document.createElement('div');
-        matchTypeContainer.classList.add('match-type-container');
+    data.typeMatches.forEach(matchType => {                          //for each iterates through the matchTypes array IN the typeMatches.
+        const matchTypeContainer = document.createElement('div');    //new div container for each match type 
+        matchTypeContainer.classList.add('match-type-container');    //for classname of that container
 
-        const matchTypeDiv = document.createElement('div');
+        const matchTypeDiv = document.createElement('div'); //div for holding Name of  match type.
         matchTypeDiv.classList.add('match-type');
 
-        const matchTypeHeading = document.createElement('h2');
-        matchTypeHeading.textContent = matchType.matchType;
-        matchTypeDiv.appendChild(matchTypeHeading);
+        const matchTypeHeading = document.createElement('h2');  
+        matchTypeHeading.textContent = matchType.matchType;   //to write the type of match in h2
+        matchTypeDiv.appendChild(matchTypeHeading);         //appends heading IN the matchtype div  
 
-        matchTypeContainer.appendChild(matchTypeDiv);
 
-        const matchCardsWrapper = document.createElement('div');
+        matchTypeContainer.appendChild(matchTypeDiv);  //appends the above div in the main div.
+
+        const matchCardsWrapper = document.createElement('div');  //div for creating a horizontal wrapper for a whole row
         matchCardsWrapper.classList.add('match-cards-wrapper');
 
-        const matchCardsDiv = document.createElement('div');
+        const matchCardsDiv = document.createElement('div');  // div for holding all the match cards
         matchCardsDiv.classList.add('match-cards');
 
-        matchType.seriesMatches.forEach(series => {
+
+        matchType.seriesMatches.forEach(series => {         //for iterating each series in the series ad wrapper from endpoints
             const seriesAdWrapper = series.seriesAdWrapper;
 
             if (seriesAdWrapper && seriesAdWrapper.seriesName && seriesAdWrapper.matches) {
                 seriesAdWrapper.matches.forEach(match => {
                     const matchInfo = match.matchInfo;
+                    const matchScore = match.matchScore;
 
                     const matchCard = document.createElement('div');
                     matchCard.classList.add('match-card');
@@ -82,6 +86,10 @@ function displayMatches(data) {
                         <h3>${seriesAdWrapper.seriesName}</h3>
                         <p>${matchInfo.team1.teamName} vs ${matchInfo.team2.teamName}</p>
                         <p>Status: ${matchInfo.status}</p>
+                        ${matchScore ? `
+                        <p>${matchInfo.team1.teamName} - ${matchScore.team1Score ? `${matchScore.team1Score.inngs1.runs}/${matchScore.team1Score.inngs1.wickets} (${matchScore.team1Score.inngs1.overs} overs)` : 'N/A'}</p>
+                        <p>${matchInfo.team2.teamName} - ${matchScore.team2Score ? `${matchScore.team2Score.inngs1.runs}/${matchScore.team2Score.inngs1.wickets} (${matchScore.team2Score.inngs1.overs} overs)` : 'N/A'}</p>
+                        ` : '<p>Score not available</p>'}
                     `;
                     matchCard.onclick = () => fetchDetailedScorecard(matchInfo.matchId);
 
@@ -91,9 +99,6 @@ function displayMatches(data) {
         });
 
         matchCardsWrapper.appendChild(matchCardsDiv);
-
-
-
 
         const leftButton = document.createElement('button');
         leftButton.classList.add('scroll-button', 'left');
@@ -105,8 +110,6 @@ function displayMatches(data) {
             });
         };
 
-
-        
         const rightButton = document.createElement('button');
         rightButton.classList.add('scroll-button', 'right');
         rightButton.innerHTML = '&#9654;';
@@ -198,15 +201,15 @@ function displayScorecard(data, matchId, venueData) {
         <li>Venue: ${venueName}, ${venueLocation}</li>
     `;
 
-    battingScoreElem.innerHTML = `
-        <li>Total: ${batTeamDetails.runs || 0}/${batTeamDetails.wickets || 0}</li>
-        <li>Overs: ${batTeamDetails.overs || 'N/A'}</li>
-    `;
+    // battingScoreElem.innerHTML = `
+    //     <li>Total: ${batTeamDetails.runs || 0}/${batTeamDetails.wickets || 0}</li>
+    //     <li>Overs: ${batTeamDetails.overs || 'N/A'}</li>
+    // `;
 
-    bowlingScoreElem.innerHTML = `
-        <li>Total: ${bowlTeamDetails.runs || 0}/${bowlTeamDetails.wickets || 0}</li>
-        <li>Overs: ${bowlTeamDetails.overs || 'N/A'}</li>
-    `;
+    // bowlingScoreElem.innerHTML = `
+    //     <li>Total: ${bowlTeamDetails.runs || 0}/${bowlTeamDetails.wickets || 0}</li>
+    //     <li>Overs: ${bowlTeamDetails.overs || 'N/A'}</li>
+    // `;
 
     battingDetailsElem.innerHTML = `
         <h3>${batTeamDetails.batTeamName || 'N/A'} Innings</h3>

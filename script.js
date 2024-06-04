@@ -68,7 +68,7 @@ function displayMatches(data) {
         const matchCardsWrapper = document.createElement('div');  //div for creating a horizontal wrapper for a whole row
         matchCardsWrapper.classList.add('match-cards-wrapper');
 
-        const matchCardsDiv = document.createElement('div');  // div for holding all the match cards
+        const matchCardsDiv = document.createElement('div');  // div for holding all the match cardS
         matchCardsDiv.classList.add('match-cards');
 
 
@@ -77,13 +77,13 @@ function displayMatches(data) {
 
             if (seriesAdWrapper && seriesAdWrapper.seriesName && seriesAdWrapper.matches) {
                 seriesAdWrapper.matches.forEach(match => {
-                    const matchInfo = match.matchInfo;
-                    const matchScore = match.matchScore;
+                    const matchInfo = match.matchInfo;          
+                    const matchScore = match.matchScore;        //getting matchscore and info    
 
-                    const matchCard = document.createElement('div');
-                    matchCard.classList.add('match-card');
+                    const matchCard = document.createElement('div');  // div tag for each match card
+                    matchCard.classList.add('match-card');       
                     matchCard.innerHTML = `
-                        <h3>${seriesAdWrapper.seriesName}</h3>
+                        <h3>${seriesAdWrapper.seriesName}</h3>       //resulting the html card and displaying elements fetched by javascript in the html tags inside javascript <tag>${}</tag>.
                         <p>${matchInfo.team1.teamName} vs ${matchInfo.team2.teamName}</p>
                         <p>Status: ${matchInfo.status}</p>
                         ${matchScore ? `
@@ -91,16 +91,16 @@ function displayMatches(data) {
                         <p>${matchInfo.team2.teamName} - ${matchScore.team2Score ? `${matchScore.team2Score.inngs1.runs}/${matchScore.team2Score.inngs1.wickets} (${matchScore.team2Score.inngs1.overs} overs)` : 'N/A'}</p>
                         ` : '<p>Score not available</p>'}
                     `;
-                    matchCard.onclick = () => fetchDetailedScorecard(matchInfo.matchId);
+                    matchCard.onclick = () => fetchDetailedScorecard(matchInfo.matchId);   // on clicking runs the function and takes match id.
 
-                    matchCardsDiv.appendChild(matchCard);
+                    matchCardsDiv.appendChild(matchCard);  //appending each match acrd inside the match cardS div
                 });
             }
         });
 
-        matchCardsWrapper.appendChild(matchCardsDiv);
+        matchCardsWrapper.appendChild(matchCardsDiv);   //similarly appending match cards in match wrapper
 
-        const leftButton = document.createElement('button');
+        const leftButton = document.createElement('button');  //button function for scrolling.. on clicking 
         leftButton.classList.add('scroll-button', 'left');
         leftButton.innerHTML = '&#9664;';
         leftButton.onclick = () => {
@@ -110,7 +110,7 @@ function displayMatches(data) {
             });
         };
 
-        const rightButton = document.createElement('button');
+        const rightButton = document.createElement('button');   
         rightButton.classList.add('scroll-button', 'right');
         rightButton.innerHTML = '&#9654;';
         rightButton.onclick = () => {
@@ -149,8 +149,8 @@ async function fetchDetailedScorecard(matchId) {
     }
 }
 
-function displayScorecard(data, matchId, venueData) {
-    const modal = document.getElementById('scorecardModal');
+function displayScorecard(data, matchId, venueData) {          
+    const modal = document.getElementById('scorecardModal');     // getting html id 
     const battingTeamElem = document.getElementById('battingTeam');
     const battingScoreElem = document.getElementById('battingScore');
     const matchStatusElem = document.getElementById('matchStatus');
@@ -175,18 +175,18 @@ function displayScorecard(data, matchId, venueData) {
         return;
     }
 
-    const scoreCard = data.scoreCard[0]; // Example: Get the first scoreCard (adjust as needed)
+    const scoreCard = data.scoreCard[0]; //  get the first scoreCard (adjust as needed), initiaalize
     const batTeamDetails = scoreCard.batTeamDetails;
     const bowlTeamDetails = scoreCard.bowlTeamDetails;
 
-    battingTeamElem.textContent = batTeamDetails.batTeamName || 'N/A';
+    battingTeamElem.textContent = batTeamDetails.batTeamName || 'N/A'; // setting the name
     bowlingTeamElem.textContent = bowlTeamDetails.bowlTeamName || 'N/A';
 
     matchStatusElem.textContent = data.status || 'N/A';
 
     let venueName = 'N/A';
     let venueLocation = 'N/A';
-
+//some issue while displaying venue
     if (data.venue && data.venue.id && venueData) {
         const venueDetails = venueData.find(venue => venue.id === data.venue.id);
         if (venueDetails) {
@@ -200,8 +200,8 @@ function displayScorecard(data, matchId, venueData) {
         <li>Date: ${scheduleData[matchId] || 'N/A'}</li>
         <li>Venue: ${venueName}, ${venueLocation}</li>
     `;
-
-    // battingScoreElem.innerHTML = `
+// commmented since the score was not able to fetch in the detaield score card.
+    // battingScoreElem.innerHTML = `                                          
     //     <li>Total: ${batTeamDetails.runs || 0}/${batTeamDetails.wickets || 0}</li>
     //     <li>Overs: ${batTeamDetails.overs || 'N/A'}</li>
     // `;
@@ -224,19 +224,19 @@ function displayScorecard(data, matchId, venueData) {
             <p>${bowler.bowlName || 'N/A'}: ${bowler.overs || 'N/A'} overs, ${bowler.runs || 0} runs, ${bowler.wickets || 0} wickets</p>
         `).join('')}
     `;
-
-    modal.style.display = 'block';
+//to display the whole detailed score card 
+    modal.style.display = 'block';  // css display block so that this function will overlap and show its content over the background, also we can mondify on clicking
 }
 
 function closeModal() {
     document.getElementById('scorecardModal').style.display = 'none';
 }
 
-// Close the modal when the user clicks anywhere outside of the modal
-window.onclick = function(event) {
+// Close the modal when clicking anywhere outside of the modal
+window.onclick = function(event) {           //an event occurs which satisfies and close the modal
     const modal = document.getElementById('scorecardModal');
     if (event.target == modal) {
-        modal.style.display = 'none';
+        modal.style.display = 'none';   
     }
 }
 

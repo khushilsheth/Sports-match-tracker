@@ -83,7 +83,7 @@ function displayMatches(data) {
                     const matchCard = document.createElement('div');  // div tag for each match card
                     matchCard.classList.add('match-card');       
                     matchCard.innerHTML = `
-                        <h3>${seriesAdWrapper.seriesName}</h3>       //resulting the html card and displaying elements fetched by javascript in the html tags inside javascript <tag>${}</tag>.
+                        <h3>${seriesAdWrapper.seriesName}</h3>       //resulting the html card and displaying elements fetched by javascript in the html tags inside javascript <tag>$ curly braces</tag>.
                         <p>${matchInfo.team1.teamName} vs ${matchInfo.team2.teamName}</p>
                         <p>Status: ${matchInfo.status}</p>
                         ${matchScore ? `

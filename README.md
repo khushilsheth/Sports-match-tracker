@@ -13,7 +13,7 @@
 ### Steps:
 - Signup for the api [API link](https://rapidapi.com/cricketapilive/api/cricbuzz-cricket) and get your key
 - Change it in the [script.js](https://github.com/khushilsheth/Sports-match-tracker/blob/main/script.js) file. Where api key is declared globally <br>
-  
+> **Terminal comands**  
 >-  Fork the git Repo : *Click the "Fork" button at the top-right corner of the page.*
 >-  Clone the Repo:
 >```
